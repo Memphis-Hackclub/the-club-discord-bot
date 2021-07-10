@@ -136,7 +136,10 @@ client.on('message', (message)=>{
     if(message.content.startsWith(`${prefix}help`)){
       message.channel.send({embed: { 
       color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
-       \n !learn-code An intro to learning code \n !socials Follow our socials \n !coc See our code of conduct \n !global-events Fun Global Hackclub Events \n !hackothons \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
+       \n !learn-code An intro to learning code \n !socials Follow our socials \n !coc See our code of conduct \n !global-events Fun Global Hackclub Events \n !hack Find hackothons happening that you can join! \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`,
+      image: {
+        url: "https://media.giphy.com/media/l0HlTPnnfzRsf4f2U/giphy.gif"
+      }
       }});
     }
     if(message.content.startsWith(`${prefix}about`)){
@@ -201,7 +204,32 @@ client.on('message', (message)=>{
               url: `https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif`
           }
       }});
-      message.channel.send("https://hackclub.com/slack/");
+      message.channel.send("Link to the repo https://github.com/Memphis-Hackclub/the-club-discord-bot");
+    }
+    if(message.content.startsWith(`${prefix}hack`)){
+      message.channel.send({embed: { 
+      color:1118018 , description:`We highly recommended you participate in a hackothons --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+      image:  {
+              url: `https://media.giphy.com/media/29HN29NtuCd7rw04t8/giphy.gif`
+          }
+      }});
+      message.channel.send("Check out these highschool hackothons https://hackathons.hackclub.com or find more (highschool and non highschool) hackothons on https://devpost.com");
+    }
+    if(message.content.startsWith(`${prefix}hehe`)){
+      message.channel.send("https://www.youtube.com/watch?v=52Xwkg01mCI&t=13s --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+
+  if(message.content.startsWith(`${prefix}RBV`)){
+      message.channel.send("iA? John may pay you $10 to figure this out . . . --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+  if(message.content.startsWith(`${prefix}GCN`)){
+      message.channel.send("https://www.youtube.com/watch?v=BNpTA_FN7Iw --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+  if(message.content.startsWith(`${prefix}1jz`)){
+      message.channel.send("https://www.youtube.com/watch?v=0RuUmZgDtFw --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+  if(message.content.startsWith(`${prefix}elon`)){
+      message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
 } )
 
