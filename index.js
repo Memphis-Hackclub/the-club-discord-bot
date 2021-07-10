@@ -136,7 +136,7 @@ client.on('message', (message)=>{
     if(message.content.startsWith(`${prefix}help`)){
       message.channel.send({embed: { 
       color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
-       \n !learn-code \n !socials \n !coc \n !global-hc-events \n !hackothons \n !hackclub-slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
+       \n !learn-code An intro to learning code \n !socials \n !coc See our code of conduct \n !global-hc-events \n !hackothons \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
       }});
     }
     if(message.content.startsWith(`${prefix}about`)){
@@ -162,7 +162,37 @@ client.on('message', (message)=>{
       message.channel.send(socials[i]);
       }
     }
+
+    if(message.content.startsWith(`${prefix}slack`)){
+      message.channel.send({embed: { 
+      color:1118018 , description:`Global Hackclub Slack --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+      image:  {
+              url: `https://media.giphy.com/media/5xtDarzqYMWFigufLws/giphy.gif`
+          }
+      }});
+      message.channel.send("https://hackclub.com/slack/");
+    }
+
+    if(message.content.startsWith(`${prefix}coc`)){
+      message.channel.send("Our Code of Conduct https://memphis-hackclub.github.io/the-new-website/howtojoin.html --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+  if(message.content.startsWith(`${prefix}learn-code`)){
+    message.channel.send({embed: { 
+      color: 65497, description:`We are soo happy you have began your coding journey!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+        image:  {
+            url: `https://media.giphy.com/media/f1pYoLDg4y0HC/giphy.gif`
+        }
+          }});
+      var learncodemessage ="";
+      var resources = ["1. Create a free Replit account to begin easily writing code https://replit.com/~","2. Build your first website in under an hour https://workshops.hackclub.com/personal_website/", "3. Learn More about HTML https://www.w3schools.com/html/default.asp", " And Or Begin Learning Python https://www.w3schools.com/python/default.asp", "After you build your first websites check out the these cool projects https://workshops.hackclub.com", "Come to our weekly workshop meettings! !next-meeting"];
+      for (i = 0; i < resources.length; i++) {
+      learncodemessage=learncodemessage+"\n"+resources[i];
+      }
+      message.channel.send(learncodemessage);
+      
+    }
 } )
+
 
 
 client.login("Your_Bot_Token")
