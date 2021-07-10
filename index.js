@@ -124,28 +124,45 @@ client.on('message', (message)=>{
       message.channel.send({embed: { 
       color: color, description:`${Botmessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
       image:  {
-          
-
-        
           url: `${gifs}`
       }
-
-
-        }});
+      }});
 
       if (currentDay == 5){
-        
-          message.channel.send("http://zoom.memphishack.com")
+        message.channel.send("http://zoom.memphishack.com")
         
       }
-       
-  
+    }
+    if(message.content.startsWith(`${prefix}help`)){
+      message.channel.send({embed: { 
+      color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
+       \n !learn-code \n !socials \n !coc \n !global-hc-events \n !hackothons \n !hackclub-slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
+      }});
+    }
+    if(message.content.startsWith(`${prefix}about`)){
+          message.channel.send({embed: { 
+          color: 65497, description:`Welcome to world of hacking! Whether you hold mutiple years of experience hacking, have never coded in your life, or you are somewhere in between, Memphis Hackclub is for you we do not care where you go to school this is a club open to ALL students!!! AND We are really EXCITED you are here!!! \n Use !coc to learn about our code of conduct and !help to learn about this bot --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://media.giphy.com/media/TdfyKrN7HGTIY/giphy.gif`
+          }
+          }});
+      message.channel.send("Our Website http://memphishack.com !socials")
+    }
 
+    if(message.content.startsWith(`${prefix}socials`)){
 
-  
-  }
-
-
+      message.channel.send({embed: { 
+          color: 65497, description:`Follow Us --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://media.giphy.com/media/dwSHVIfc331IKFvMdf/giphy.gif`
+          }
+          }});
+      var socials = ["Reply with your Github username message to be added the Github. Memphis Hackclub https://github.com/Memphis-Hackclub","Our Insta @memphishackclub https://www.instagram.com/memphishackclub/","Our YT HackClub Memphis https://www.youtube.com/channel/UCQEw733Z4ID3AVLtFpQ5hyw"," Our Twitter @MHackclub https://twitter.com/MHackclub","Our LinkedIn Memphis Hack Club https://www.linkedin.com/company/memphis-hack-club/?viewAsMember=true", "Our FB Group Memphis Hackclub https://www.facebook.com/groups/656997425191729"];
+      for (i = 0; i < socials.length; i++) {
+      message.channel.send(socials[i]);
+      }
+    }
 } )
+
 
 client.login("Your_Bot_Token")
