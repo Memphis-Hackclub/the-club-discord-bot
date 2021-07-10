@@ -136,7 +136,7 @@ client.on('message', (message)=>{
     if(message.content.startsWith(`${prefix}help`)){
       message.channel.send({embed: { 
       color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
-       \n !learn-code An intro to learning code \n !socials \n !coc See our code of conduct \n !global-hc-events \n !hackothons \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
+       \n !learn-code An intro to learning code \n !socials Follow our socials \n !coc See our code of conduct \n !global-events Fun Global Hackclub Events \n !hackothons \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix-bot To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀` 
       }});
     }
     if(message.content.startsWith(`${prefix}about`)){
@@ -191,8 +191,19 @@ client.on('message', (message)=>{
       message.channel.send(learncodemessage);
       
     }
+    if(message.content.startsWith(`${prefix}global-events`)){
+      message.channel.send("Upcoming Global Hackclub events https://events.hackclub.com --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+    if(message.content.startsWith(`${prefix}fix`)){
+      message.channel.send({embed: { 
+      color:1118018 , description:`Make a fix, change, or report a problem for this bot on our Github --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+      image:  {
+              url: `https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif`
+          }
+      }});
+      message.channel.send("https://hackclub.com/slack/");
+    }
 } )
-
 
 
 client.login("Your_Bot_Token")
