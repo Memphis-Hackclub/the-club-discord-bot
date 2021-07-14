@@ -27,21 +27,21 @@ client.once("ready", () =>{
 })
 
 // date control varibles and functions
-var currentDate = new Date();
+var currentDate = new Date("07/16/2021");
 var hours = currentDate.getHours();
 var currentDay =currentDate.getDay();
+var currentMonth = currentDate.getMonth() + 1;
+var currentDay = currentDate.getDate();
+var currentMinute = currentDate.getMinutes();
+var currentSecond = currentDate.getSeconds();
+var yyyy = currentDate.getFullYear();
 
-function nextTime(currentDate, hours, currentDay){
 
-
-  var mm = currentDate.getMonth() + 1;
-  var dd = currentDate.getDate();
-  var yyyy = currentDate.getFullYear();
-  currentDate = mm + '/' + dd + '/' + yyyy;
+  currentDate = currentMonth + '/' + currentDay + '/' + yyyy;
 
   currentDate = new Date(currentDate);
 
-  var referenceDate = new Date("06/25/2021");
+  var referenceDate = new Date();
   var days = currentDate.getTime() - referenceDate.getTime();
   days = days / (1000 * 3600 * 24);
 
@@ -75,14 +75,41 @@ function nextTime(currentDate, hours, currentDay){
   nextMeeting = mm + '/' + dd + '/' + yyyy;
   
 
-  return String(nextMeeting);
-}
+// this code below is to be added later when it works as a autobot meeting reminder
 
-console.log(currentDay)
-console.log(hours)
-nextMeeting = nextTime(currentDate, hours, currentDay);
+// console.log(currentDay)
+// console.log(hours)
 
-console.log(nextMeeting);
+// hours = 18;
+// currentMinute = 30;
+// currentSecond=1;
+// //console.log(dd)
+// console.log(currentDay)
+// if (currentDay == dd){
+//   console.log("test . . . 1")
+//   if(currentMonth == mm - 1){
+//     console.log("test . . . 2")
+//     if (hours == 18){
+//       console.log("test . . . 3")
+//       if (currentMinute == 30){
+//         console.log("test . . . 4")
+//         if (currentSecond == 1){
+//           console.log("test . . . 5")
+//           message.channel.send({embed: { 
+//             color: 1118018, description:` Hackclub officially starts at 4:00 PM but you can come early! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+//             image:  { url: `https://media.giphy.com/media/b1o4elYH8Tqjm/giphy.gif`}
+//             }});
+//         }
+
+//       }
+//     }
+//   }
+// }
+
+
+
+
+
 
 
 //next-meeting command and logic that dictates the gif, message, and colors used
@@ -253,5 +280,4 @@ client.on('message', (message)=>{
 } )
 
 // the client id
-
 client.login("Your_Bot_Token")
