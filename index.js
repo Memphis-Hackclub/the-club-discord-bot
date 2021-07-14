@@ -1,14 +1,24 @@
+//sets up important variables 
 const Discord = require('discord.js') 
 const client = new Discord.Client()
 const fs = require('fs')
+client.msgs = require('./msgs.json')
+prefix = "!"
 
+//keeps the bot running 24/7 by creating it into a webpage
 var http = require('http');  
-  http.createServer(function (req, res) {   
-    res.write("I'm alive");   
-    res.end(); 
+  http.createServer(function (req, res) {
+    res.setHeader('Content-type', 'text/html');
+    fs.readFile('./index.html', (err, html) => {
+        if(err)
+           res.write("Error");    
+        else
+           res.write(html);    
+        res.end();
+    });
 }).listen(8080);
 
-
+// changes the status of the bot every 10 seconds
 client.once("ready", () =>{
   console.log("your bot is ready!")
 
@@ -16,7 +26,7 @@ client.once("ready", () =>{
   setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 10000)
 })
 
-
+// date control varibles and functions
 var currentDate = new Date();
 var hours = currentDate.getHours();
 var currentDay =currentDate.getDay();
@@ -52,12 +62,8 @@ function nextTime(currentDate, hours, currentDay){
   var i;
   var add;
 
-  //console.log(weeks);
   
-
   var nextMeeting = referenceDate;
-
-
   for ( i = weeks; i < weeks*2; i++) {
     nextMeeting.setDate(nextMeeting .getDate() + 7);
 
@@ -78,20 +84,8 @@ nextMeeting = nextTime(currentDate, hours, currentDay);
 
 console.log(nextMeeting);
 
-client.msgs = require('./msgs.json')
 
-prefix = "!"
-
-
-
-
-
-
-
-
-
-
-
+//next-meeting command and logic that dictates the gif, message, and colors used
 client.on('message', (message)=>{
   if(message.content.startsWith(`${prefix}next-meeting`)){
       var color = 16741749;
@@ -138,7 +132,7 @@ client.on('message', (message)=>{
 
     
 
-      
+      //sends the messaged with the varibles defined with the logic above
       message.channel.send({embed: { 
       color: color, description:`${Botmessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
       image:  {
@@ -151,6 +145,8 @@ client.on('message', (message)=>{
         
       }
     }
+
+    //the help command logic
     if(message.content.startsWith(`${prefix}help`)){
       message.channel.send({embed: { 
       color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
@@ -160,6 +156,7 @@ client.on('message', (message)=>{
       }
       }});
     }
+    // the about command
     if(message.content.startsWith(`${prefix}about`)){
           message.channel.send({embed: { 
           color: 65497, description:`Welcome to world of hacking! Whether you hold mutiple years of experience hacking, have never coded in your life, or you are somewhere in between, Memphis Hackclub is for you we do not care where you go to school this is a club open to ALL students!!! AND We are really EXCITED you are here!!! \n Use !coc to learn about our code of conduct and !help to learn about this bot --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
@@ -169,7 +166,7 @@ client.on('message', (message)=>{
           }});
       message.channel.send("Our Website http://memphishack.com !socials")
     }
-
+     // the socials command
     if(message.content.startsWith(`${prefix}socials`)){
 
       message.channel.send({embed: { 
@@ -183,7 +180,7 @@ client.on('message', (message)=>{
       message.channel.send(socials[i]);
       }
     }
-
+    // the slack command
     if(message.content.startsWith(`${prefix}slack`)){
       message.channel.send({embed: { 
       color:1118018 , description:`Global Hackclub Slack --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
@@ -193,10 +190,11 @@ client.on('message', (message)=>{
       }});
       message.channel.send("https://hackclub.com/slack/");
     }
-
+    // the coc command
     if(message.content.startsWith(`${prefix}coc`)){
       message.channel.send("Our Code of Conduct https://memphis-hackclub.github.io/the-new-website/howtojoin.html --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
+    // learn-code command
   if(message.content.startsWith(`${prefix}learn-code`)){
     message.channel.send({embed: { 
       color: 65497, description:`We are soo happy you have began your coding journey!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
@@ -212,9 +210,11 @@ client.on('message', (message)=>{
       message.channel.send(learncodemessage);
       
     }
+    // global-events command
     if(message.content.startsWith(`${prefix}global-events`)){
       message.channel.send("Upcoming Global Hackclub events https://events.hackclub.com --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
+    // the fix command
     if(message.content.startsWith(`${prefix}fix`)){
       message.channel.send({embed: { 
       color:1118018 , description:`Make a fix, change, or report a problem for this bot on our Github --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
@@ -224,6 +224,7 @@ client.on('message', (message)=>{
       }});
       message.channel.send("Link to the repo https://github.com/Memphis-Hackclub/the-club-discord-bot");
     }
+    // the hack command
     if(message.content.startsWith(`${prefix}hack`)){
       message.channel.send({embed: { 
       color:1118018 , description:`We highly recommended you participate in a hackothons --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
@@ -251,5 +252,6 @@ client.on('message', (message)=>{
     }
 } )
 
+// the client id
 
 client.login("Your_Bot_Token")
