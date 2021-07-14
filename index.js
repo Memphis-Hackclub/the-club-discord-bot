@@ -68,6 +68,16 @@ client.msgs = require('./msgs.json')
 
 prefix = "!"
 
+
+var http = require('http');  
+  http.createServer(function (req, res) {   
+    res.write("I'm alive");   
+    res.end(); 
+}).listen(8080);
+
+
+
+
 client.once("ready", () =>{
   console.log("your bot is ready!")
 })
@@ -232,6 +242,7 @@ client.on('message', (message)=>{
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
 } )
+
 
 
 client.login("Your_Bot_Token")
