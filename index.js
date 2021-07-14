@@ -2,6 +2,20 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const fs = require('fs')
 
+var http = require('http');  
+  http.createServer(function (req, res) {   
+    res.write("I'm alive");   
+    res.end(); 
+}).listen(8080);
+
+
+client.once("ready", () =>{
+  console.log("your bot is ready!")
+
+  let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
+  setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 10000)
+})
+
 
 var currentDate = new Date();
 var hours = currentDate.getHours();
@@ -69,18 +83,12 @@ client.msgs = require('./msgs.json')
 prefix = "!"
 
 
-var http = require('http');  
-  http.createServer(function (req, res) {   
-    res.write("I'm alive");   
-    res.end(); 
-}).listen(8080);
 
 
 
 
-client.once("ready", () =>{
-  console.log("your bot is ready!")
-})
+
+
 
 
 
@@ -242,7 +250,6 @@ client.on('message', (message)=>{
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
 } )
-
 
 
 client.login("Your_Bot_Token")
