@@ -23,7 +23,7 @@ client.once("ready", () =>{
   console.log("your bot is ready!")
 
   let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
-  setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 10000)
+  setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
 })
 
 // date control varibles and functions
@@ -277,7 +277,27 @@ client.on('message', (message)=>{
   if(message.content.startsWith(`${prefix}elon`)){
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
+    if(message.content.startsWith(`GAMER` || `gamer` || `GAMMMMMERRRRRRRRR` || `Gamer.`)){ // idk why this is not working
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
+    if(message.content.startsWith( `gamer`)){
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
+     if(message.content.startsWith( `GAMMMMMERRRRRRRRR`)){
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
+    if(message.content.startsWith( `Gamer`)){
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
+    if(message.content.startsWith( `Gaaaaaaaa`)){
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
+    if(message.content.startsWith( `Gaaaaaaaayyyyymmmmmeeeeeerrrrrrrrrz`)){
+      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+    }
 } )
+
+
 
 // the client id
 client.login("Your_Bot_Token")
