@@ -26,28 +26,27 @@ client.once("ready", () =>{
   setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
 })
 
-// date control varibles and functions
-var currentDate = new Date("07/16/2021");
-var hours = currentDate.getHours();
-var currentDay =currentDate.getDay();
-var currentMonth = currentDate.getMonth() + 1;
-var currentDay = currentDate.getDate();
-var currentMinute = currentDate.getMinutes();
-var currentSecond = currentDate.getSeconds();
-var yyyy = currentDate.getFullYear();
 
 
-  currentDate = currentMonth + '/' + currentDay + '/' + yyyy;
+function nextMeeting(){
+
+  var currentDate = new Date();
+  hours = currentDate.getHours();
+  currentDay =currentDate.getDay();
+  var mm = currentDate.getMonth() + 1;
+  var dd = currentDate.getDate();
+  var yyyy = currentDate.getFullYear();
+  currentDate = mm + '/' + dd + '/' + yyyy;
 
   currentDate = new Date(currentDate);
 
-  var referenceDate = new Date();
+  var referenceDate = new Date("06/25/2021");
   var days = currentDate.getTime() - referenceDate.getTime();
   days = days / (1000 * 3600 * 24);
 
   var weeks = (days/7);
 
-  //console.log(currentDay);
+  
 
   if (currentDay == 5){
     if(hours >= 20){
@@ -64,101 +63,90 @@ var yyyy = currentDate.getFullYear();
 
   
   var nextMeeting = referenceDate;
+
+
   for ( i = weeks; i < weeks*2; i++) {
     nextMeeting.setDate(nextMeeting .getDate() + 7);
-
+    console.log(nextMeeting);
     }
 
   var mm = nextMeeting.getMonth() + 1;
   var dd = nextMeeting.getDate();
   var yyyy = nextMeeting.getFullYear();
   nextMeeting = mm + '/' + dd + '/' + yyyy;
-  
-
-// this code below is to be added later when it works as a autobot meeting reminder
-
-// console.log(currentDay)
-// console.log(hours)
-
-// hours = 18;
-// currentMinute = 30;
-// currentSecond=1;
-// //console.log(dd)
-// console.log(currentDay)
-// if (currentDay == dd){
-//   console.log("test . . . 1")
-//   if(currentMonth == mm - 1){
-//     console.log("test . . . 2")
-//     if (hours == 18){
-//       console.log("test . . . 3")
-//       if (currentMinute == 30){
-//         console.log("test . . . 4")
-//         if (currentSecond == 1){
-//           console.log("test . . . 5")
-//           message.channel.send({embed: { 
-//             color: 1118018, description:` Hackclub officially starts at 4:00 PM but you can come early! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
-//             image:  { url: `https://media.giphy.com/media/b1o4elYH8Tqjm/giphy.gif`}
-//             }});
-//         }
-
-//       }
-//     }
-//   }
-// }
 
 
 
+  if (hours == 3){
+          Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!! Join the #idle VC channel while you late night code";
+          gifs = "https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif";
+          color = 1118018;
+      }
+
+      if (currentDay == 5){
+        if(hours <= 20){
+          gifs = "https://media.giphy.com/media/WzFP9kauh3WrkoethW/giphy.gif";
+          Botmessage = "Come to Hackclub Today at 4:00 PM CST on zoom.memphishack.com"
+          color = 16711765;
+        }else{
+          color = 5253281;
+          gifs = "https://media.giphy.com/media/3o6fJ5LANL0x31R1Ic/giphy.gif";
+          Botmessage = "Your a little late :( Hackclub is likely over maybe not tho so just try the link, but come to Hackclub "+nextMeeting+" at 4PM CST @ zoom.memphishack.com !!!";
+        }}
+
+      if (currentDay == 4){
+          color = 65306;
+          gifs = "https://media.giphy.com/media/ZeXeuNFABOf6epM7sd/giphy.gif";
+          Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
+        }
+
+        if (currentDay == 3){
+          gifs = "https://media.giphy.com/media/TOWeGr70V2R1K/giphy.gif";
+          Botmessage = "A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then don't get caught 😉";
+          color = 16568067;
+        }
+
+      if (currentDay == 2){
+          color = 64511;
+          gifs = "https://media.giphy.com/media/USV0ym3bVWQJJmNu3N/giphy.gif";
+          Botmessage = "Keep up the good work! A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then join the #24/7code chat VC";
+        }
+
+        else{
+          var color = 16741749;
+        
+        var gifs = "https://media.giphy.com/media/l0HlvFUHvDB16UOwU/giphy.gif";
+        Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
+        console.log('this is happening')
+        }
+
+        nextTimeInfo = new Object();
+        nextTimeInfo.botMessage = Botmessage;
+        nextTimeInfo.gif = gifs;
+        nextTimeInfo.color = color;
+        return nextTimeInfo;
+        
+
+}
+
+nextTimeInfo = nextMeeting();
+Botmessage = nextTimeInfo.botMessage;
+gifs =  nextTimeInfo.gif;
+color =  nextTimeInfo.color;
 
 
+console.log(Botmessage);
+console.log(gifs);
+console.log(color);
+     
+      
 
+    
 
 //next-meeting command and logic that dictates the gif, message, and colors used
 client.on('message', (message)=>{
   if(message.content.startsWith(`${prefix}next-meeting`)){
-      var color = 16741749;
-      var Botmessage =""
-      var gifs = "https://media.giphy.com/media/l0HlvFUHvDB16UOwU/giphy.gif";
-      Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
      
-      
-
-    if (hours == 3){
-        Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!! Join the #idle VC channel while you late night code";
-        gifs = "https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif";
-        color = 1118018;
-     }
-
-    if (currentDay == 5){
-      if(hours <= 20){
-         gifs = "https://media.giphy.com/media/WzFP9kauh3WrkoethW/giphy.gif";
-         Botmessage = "Come to Hackclub Today at 4:00 PM CST on zoom.memphishack.com"
-         color = 16711765;
-      }else{
-        color = 5253281;
-         gifs = "https://media.giphy.com/media/3o6fJ5LANL0x31R1Ic/giphy.gif";
-         Botmessage = "Your a little late :( Hackclub is likely over maybe not tho so just try the link, but come to Hackclub "+nextMeeting+" at 4PM CST @ zoom.memphishack.com !!!";
-      }}
-
-    if (currentDay == 4){
-        color = 65306;
-        gifs = "https://media.giphy.com/media/ZeXeuNFABOf6epM7sd/giphy.gif";
-        Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
-      }
-
-      if (currentDay == 3){
-        gifs = "https://media.giphy.com/media/TOWeGr70V2R1K/giphy.gif";
-        Botmessage = "A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then don't get caught 😉";
-        color = 16568067;
-      }
-
-    if (currentDay == 2){
-        color = 64511;
-        gifs = "https://media.giphy.com/media/USV0ym3bVWQJJmNu3N/giphy.gif";
-        Botmessage = "Keep up the good work! A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then join the #24/7code chat VC";
-      }
-
-    
-
       //sends the messaged with the varibles defined with the logic above
       message.channel.send({embed: { 
       color: color, description:`${Botmessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
