@@ -27,117 +27,18 @@ client.once("ready", () =>{
 })
 
 
-
-function nextMeeting(){
-
-  var currentDate = new Date();
-  hours = currentDate.getHours();
-  currentDay =currentDate.getDay();
-  var mm = currentDate.getMonth() + 1;
-  var dd = currentDate.getDate();
-  var yyyy = currentDate.getFullYear();
-  currentDate = mm + '/' + dd + '/' + yyyy;
-
-  currentDate = new Date(currentDate);
-
-  var referenceDate = new Date("06/25/2021");
-  var days = currentDate.getTime() - referenceDate.getTime();
-  days = days / (1000 * 3600 * 24);
-
-  var weeks = (days/7);
-
-  
-
-  if (currentDay == 5){
-    if(hours >= 20){
-      weeks = Math.trunc(weeks) + 1;
-    }
-    else{
-      weeks = Math.trunc(weeks);
-    }
-  } else{
-    weeks = Math.trunc(weeks) + 1;
-  }
-  var i;
-  var add;
-
-  
-  var nextMeeting = referenceDate;
+const nextTimeInfo = require('./next-meeting');
 
 
-  for ( i = weeks; i < weeks*2; i++) {
-    nextMeeting.setDate(nextMeeting .getDate() + 7);
-    console.log(nextMeeting);
-    }
-
-  var mm = nextMeeting.getMonth() + 1;
-  var dd = nextMeeting.getDate();
-  var yyyy = nextMeeting.getFullYear();
-  nextMeeting = mm + '/' + dd + '/' + yyyy;
-
-
-
-  if (hours == 3){
-          Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!! Join the #idle VC channel while you late night code";
-          gifs = "https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif";
-          color = 1118018;
-      }
-
-      if (currentDay == 5){
-        if(hours <= 20){
-          gifs = "https://media.giphy.com/media/WzFP9kauh3WrkoethW/giphy.gif";
-          Botmessage = "Come to Hackclub Today at 4:00 PM CST on zoom.memphishack.com"
-          color = 16711765;
-        }else{
-          color = 5253281;
-          gifs = "https://media.giphy.com/media/3o6fJ5LANL0x31R1Ic/giphy.gif";
-          Botmessage = "Your a little late :( Hackclub is likely over maybe not tho so just try the link, but come to Hackclub "+nextMeeting+" at 4PM CST @ zoom.memphishack.com !!!";
-        }}
-
-      if (currentDay == 4){
-          color = 65306;
-          gifs = "https://media.giphy.com/media/ZeXeuNFABOf6epM7sd/giphy.gif";
-          Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
-        }
-
-        if (currentDay == 3){
-          gifs = "https://media.giphy.com/media/TOWeGr70V2R1K/giphy.gif";
-          Botmessage = "A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then don't get caught 😉";
-          color = 16568067;
-        }
-
-      if (currentDay == 2){
-          color = 64511;
-          gifs = "https://media.giphy.com/media/USV0ym3bVWQJJmNu3N/giphy.gif";
-          Botmessage = "Keep up the good work! A few days off but come to Hackclub on "+nextMeeting+" at 4:OOPM CST @ zoom.memphishack.com ! Until then join the #24/7code chat VC";
-        }
-
-        else{
-          var color = 16741749;
-        
-        var gifs = "https://media.giphy.com/media/l0HlvFUHvDB16UOwU/giphy.gif";
-        Botmessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
-        console.log('this is happening')
-        }
-
-        nextTimeInfo = new Object();
-        nextTimeInfo.botMessage = Botmessage;
-        nextTimeInfo.gif = gifs;
-        nextTimeInfo.color = color;
-        return nextTimeInfo;
-        
-
-}
-
-nextTimeInfo = nextMeeting();
-Botmessage = nextTimeInfo.botMessage;
+botMessage = nextTimeInfo.botMessage;
 gifs =  nextTimeInfo.gif;
 color =  nextTimeInfo.color;
+currentDay =  nextTimeInfo.currentDay;
 
-
-console.log(Botmessage);
+console.log(botMessage);
 console.log(gifs);
 console.log(color);
+console.log(currentDay);
      
       
 
@@ -149,12 +50,12 @@ client.on('message', (message)=>{
      
       //sends the messaged with the varibles defined with the logic above
       message.channel.send({embed: { 
-      color: color, description:`${Botmessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+      color: color, description:`${botMessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
       image:  {
           url: `${gifs}`
       }
       }});
-
+      console.log(currentDay)
       if (currentDay == 5){
         message.channel.send("http://zoom.memphishack.com")
         
@@ -283,6 +184,19 @@ client.on('message', (message)=>{
     if(message.content.startsWith( `Gaaaaaaaayyyyymmmmmeeeeeerrrrrrrrrz`)){
       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
     }
+
+        if(message.content.startsWith(`${prefix}time`)){
+          var moment = require('moment'); 
+          message.channel.send({embed: { 
+          
+          color: 9437320, description:` It is currently `+moment().utcOffset(-5).format('MMMM Do YYYY, h:mm:ss a')+` in Memphis, Tennesee, USA, Earth --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://media1.giphy.com/media/IZcjxKQNbOOly/giphy.gif?cid=790b7611fdc3c7309e203011a8c330cdd7849b92d791640b&rid=giphy.gif`
+          }
+          }});
+      
+    }
+
 } )
 
 
