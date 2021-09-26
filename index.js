@@ -1,3 +1,10 @@
+var express = require('express')
+var http = require('http');
+var bodyParser = require('body-parser');
+var app = express()
+status = "";
+let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
+
 //sets up important variables 
 const Discord = require('discord.js') 
 const client = new Discord.Client()
@@ -6,24 +13,62 @@ client.msgs = require('./msgs.json')
 prefix = "!"
 
 //keeps the bot running 24/7 by creating it into a webpage
-var http = require('http');  
-  http.createServer(function (req, res) {
-    res.setHeader('Content-type', 'text/html');
-    fs.readFile('./index.html', (err, html) => {
-        if(err)
-           res.write("Error");    
-        else
-           res.write(html);    
-        res.end();
-    });
-}).listen(8080);
+
+//helps get the input from the form
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+app.get('/', function (req, res, next) {
+  res.sendfile('index.html');
+});
+
+app.post('/status', function (req, res, next) {
+  getStatus(req.body, res);
+});
+
+app.listen(8080);
+
+function getStatus(parms, res) {
+  var status = String(parms.status);
+  var type = String(parms.type);
+  var link = String(parms.link);
+  console.log(status);
+  let array = status.split(" "); //for later use!
+  console.log(array);
+  clearInterval(defaultStatus)
+
+
+
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end("The new status will be " + status);
+  if (status ==""){
+    defaultStatus = setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
+    
+  }
+  if (type =='NONE' || 'PLAYING'){
+    link == "";
+  }
+
+
+client.user.setActivity(status, {
+ type: type,
+ url: link,
+});
+}
+
+
 
 // changes the status of the bot every 10 seconds
 client.once("ready", () =>{
   console.log("your bot is ready!")
 
-  let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
-  setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
+  
+  if (status ==""){
+    defaultStatus = setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
+  }
+  else{
+    defaultStatus = setInterval(() => client.user.setActivity(status,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 10000)
+  }
 })
 
 
@@ -197,8 +242,12 @@ client.on('message', (message)=>{
       
     }
 
-} )
 
+     if(message.content.startsWith(`${prefix}change-status`)){
+      message.channel.send("Hello you can now change my status on https://mhc-time-bot.philippounds.repl.co --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+
+} )
 
 
 // the client id
