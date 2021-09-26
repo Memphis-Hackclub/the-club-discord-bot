@@ -48,6 +48,12 @@ function getStatus(parms, res) {
   if (type =='NONE' || 'PLAYING'){
     link == "";
   }
+  if (type =='STREAMING' && link ==""){
+    link == "https://www.youtube.com/watch?v=DWcJFNfaw9c";
+  }
+  if (type =='LISTENING' && link ==""){
+    link == "https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ";
+  }
 
 
 client.user.setActivity(status, {
@@ -248,7 +254,6 @@ client.on('message', (message)=>{
     }
 
 } )
-
 
 // the client id
 client.login("Your_Bot_Token")
