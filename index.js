@@ -5,12 +5,16 @@ var app = express()
 status = "";
 let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
 
+
+
 //sets up important variables 
 const Discord = require('discord.js') 
 const client = new Discord.Client()
 const fs = require('fs')
-client.msgs = require('./msgs.json')
+//client.msgs = require('./msgs.json')
 prefix = "!"
+
+
 
 //keeps the bot running 24/7 by creating it into a webpage
 
@@ -63,6 +67,13 @@ client.user.setActivity(status, {
 }
 
 
+client.on('guildMemberAdd', guildMember => {
+  let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Hack');
+
+  guildMember.roles.add(welcomeRole);
+});
+
+
 
 // changes the status of the bot every 10 seconds
 client.once("ready", () =>{
@@ -76,6 +87,8 @@ client.once("ready", () =>{
     defaultStatus = setInterval(() => client.user.setActivity(status,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 10000)
   }
 })
+
+
 
 
 const nextTimeInfo = require('./next-meeting');
@@ -254,6 +267,9 @@ client.on('message', (message)=>{
     }
 
 } )
+
+
+// the client id
 
 // the client id
 client.login("Your_Bot_Token")
