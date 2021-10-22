@@ -45,7 +45,11 @@ function nextMeeting(){
   var dd = nextMeeting.getDate();
   var yyyy = nextMeeting.getFullYear();
   nextMeeting = mm + '/' + dd + '/' + yyyy;
-  
+  gifs = "https://media.giphy.com/media/WzFP9kauh3WrkoethW/giphy.gif";
+  botMessage = "Come to Hackclub Today at 4:00 PM CST on zoom.memphishack.com"
+  color = 16711765;  
+
+
 
   if (hours == 3){
           botMessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!! Join the #idle VC channel while you late night code";
@@ -85,24 +89,56 @@ function nextMeeting(){
         else{
           var color = 16741749;
         
-        var gifs = "https://media.giphy.com/media/l0HlvFUHvDB16UOwU/giphy.gif";
+        gifs = "https://media.giphy.com/media/l0HlvFUHvDB16UOwU/giphy.gif";
         botMessage = "Come to Hackclub "+nextMeeting+" at 4:OOPM CST  @ zoom.memphishack.com !!!";
         console.log('this is happening')
         }
 
-        nextTimeInfo = new Object();
+
+        
+
+        // return botMessage, gifs, color, currentDay;
+        
+
+        
+        // class nextTimeInfo {
+        //   constructor(botMessage, gif, color, currentDay){
+        // this.botMessage = botMessage;
+        // this.gif = gifs;
+        // this.color = color;
+        // this.currentDay = currentDay; 
+
+        //   }
+        // }
+        
+        const nextTimeInfo = new Object();
+       
         nextTimeInfo.botMessage = botMessage;
         nextTimeInfo.gif = gifs;
         nextTimeInfo.color = color;
         nextTimeInfo.currentDay = currentDay; 
+        
+        console.log(nextTimeInfo)
+
         return nextTimeInfo;
+
+        
+        
+        
+
         
     
         
 
 }
 
-nextTimeInfo = nextMeeting();
 
-const next = nextTimeInfo;
-module.exports = next;
+
+nextTimeInform = nextMeeting();
+
+console.log(nextTimeInform)
+
+const next = "hello";
+
+
+module.exports = nextTimeInform;
