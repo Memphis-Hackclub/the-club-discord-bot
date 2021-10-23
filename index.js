@@ -94,15 +94,15 @@ client.once("ready", () =>{
 const nextTimeInfo = require('./next-meeting');
 
 
-botMessage = nextTimeInfo.botMessage;
-gifs =  nextTimeInfo.gif;
-color =  nextTimeInfo.color;
-currentDay =  nextTimeInfo.currentDay;
+// botMessage = nextTimeInfo.botMessage;
+// gifs =  nextTimeInfo.gif;
+// color =  nextTimeInfo.color;
+// currentDay =  nextTimeInfo.currentDay;
 
-console.log(botMessage);
-console.log(gifs);
-console.log(color);
-console.log(currentDay);
+// console.log(botMessage);
+// console.log(gifs);
+// console.log(color);
+// console.log(currentDay);
      
       
 
@@ -110,21 +110,21 @@ console.log(currentDay);
 
 //next-meeting command and logic that dictates the gif, message, and colors used
 client.on('message', (message)=>{
-  if(message.content.startsWith(`${prefix}next-meeting`)){
+  // if(message.content.startsWith(`${prefix}next-meeting`)){
      
-      //sends the messaged with the varibles defined with the logic above
-      message.channel.send({embed: { 
-      color: color, description:`${botMessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
-      image:  {
-          url: `${gifs}`
-      }
-      }});
-      console.log(currentDay)
-      if (currentDay == 5){
-        message.channel.send("http://zoom.memphishack.com")
+  //     //sends the messaged with the varibles defined with the logic above
+  //     message.channel.send({embed: { 
+  //     color: color, description:`${botMessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+  //     image:  {
+  //         url: `${gifs}`
+  //     }
+  //     }});
+  //     console.log(currentDay)
+  //     if (currentDay == 5){
+  //       message.channel.send("http://zoom.memphishack.com")
         
-      }
-    }
+  //     }
+  //   }
 
     //the help command logic
     if(message.content.startsWith(`${prefix}help`)){
@@ -146,7 +146,15 @@ client.on('message', (message)=>{
           }});
       message.channel.send("Our Website http://memphishack.com !socials")
     }
-     // the socials command
+    
+    if(message.content.startsWith(`${prefix}joemama`)){
+      message.channel.send({embed: { 
+          color: 1118018, description:`Got em ggs --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`
+          }
+          }})};
+           // the socials command
     if(message.content.startsWith(`${prefix}socials`)){
 
       message.channel.send({embed: { 
@@ -268,8 +276,6 @@ client.on('message', (message)=>{
 
 } )
 
-
-// the client id
 
 // the client id
 client.login("Your_Bot_Token")
