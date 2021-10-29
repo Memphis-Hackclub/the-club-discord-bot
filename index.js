@@ -147,13 +147,13 @@ client.on('message', (message)=>{
       message.channel.send("Our Website http://memphishack.com !socials")
     }
     
-    if(message.content.startsWith(`${prefix}joemama`)){
-      message.channel.send({embed: { 
-          color: 1118018, description:`Got em ggs --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
-          image:  {
-              url: `https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`
-          }
-          }})};
+//     if(message.content.startsWith(`${prefix}joemama`)){
+//       message.channel.send({embed: { 
+//           color: 1118018, description:`Got em ggs --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+//           image:  {
+//               url: `https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`
+//           }
+//           }})};
            // the socials command
     if(message.content.startsWith(`${prefix}socials`)){
 
