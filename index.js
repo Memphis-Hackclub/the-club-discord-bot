@@ -5,6 +5,13 @@ var app = express()
 status = "";
 let activities = ['😂','💻', '🤯', '💖', '😀', '⚽️', '💾', '🐣', '🇺🇸','🐼', '😉' ,'🕹'], i = 0;
 
+const schedule = require('node-schedule');
+
+const rule = new schedule.RecurrenceRule();
+rule.tz = 'America/Regina';
+rule.minute =44;
+rule.hour = 19
+
 
 
 //sets up important variables 
@@ -12,6 +19,9 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const fs = require('fs')
 //client.msgs = require('./msgs.json')
+var ftext = fs.readFileSync("./questions.txt", "utf-8");
+var text = ftext.split('\n')
+console.log(text)
 prefix = "!"
 
 
@@ -42,7 +52,7 @@ function getStatus(parms, res) {
   clearInterval(defaultStatus)
 
 
-
+  console.log("test")
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end("The new status will be " + status);
   if (status ==""){
@@ -60,6 +70,10 @@ function getStatus(parms, res) {
   }
 
 
+
+
+
+
 client.user.setActivity(status, {
  type: type,
  url: link,
@@ -75,11 +89,31 @@ client.on('guildMemberAdd', guildMember => {
 
 
 
+
+// When you want to start it, use:
+
+ 
 // changes the status of the bot every 10 seconds
+
+
 client.once("ready", () =>{
   console.log("your bot is ready!")
 
-  
+    const job = schedule.scheduleJob(rule, function(){
+      console.log("chips")
+            const guild = client.guilds.cache.get('779093827121446912');
+            const channel = guild.channels.cache.get('907357829910908939');
+            
+            channel.send({embed: { 
+          color: 65497, description:`***__QUESTION OF THE DAY__***\n`+text[Math.floor(Math.random()*text.length)], 
+          image:  {
+              url: `https://media4.giphy.com/media/xTiN0IuPQxRqzxodZm/giphy.gif`
+          }
+          }});
+    });
+
+   
+
   if (status ==""){
     defaultStatus = setInterval(() => client.user.setActivity(`24/7 Beats ${activities[i++ %  activities.length]}`,  {type:"STREAMING",url:"https://www.youtube.com/watch?v=DWcJFNfaw9c"  }), 5000)
   }
@@ -146,12 +180,16 @@ client.on('message', (message)=>{
           }});
       message.channel.send("Our Website http://memphishack.com !socials")
     }
+
+    if(message.content.startsWith(`${prefix}change-status`)){
+      message.channel.send("Hello you can now change my status on https://mhc-time-bot.philippounds.repl.co --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
     
     if(message.content.startsWith(`${prefix}joemama`)){
       message.channel.send({embed: { 
-          color: 1118018, description:`Got em ggs --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          color: 1118018, description: `Got em ggs  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`,//`Got em ggs --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
           image:  {
-              url: `https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`
+              url: `https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`//`https://c.tenor.com/BkCjmPNZvaEAAAAM/squidward-dab.gif`
           }
           }})};
            // the socials command
@@ -179,9 +217,10 @@ client.on('message', (message)=>{
       message.channel.send("https://hackclub.com/slack/");
     }
     // the coc command
+if(message.content.startsWith(`${prefix}human`)){
+      message.channel.send('"say somthing that complements Human #1"--- some random guy 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀');}    
     if(message.content.startsWith(`${prefix}coc`)){
-      message.channel.send("Our Code of Conduct https://memphis-hackclub.github.io/the-new-website/howtojoin.html --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
-    }
+      message.channel.send("Our Code of Conduct https://memphis-hackclub.github.io/the-new-website/howtojoin.html --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");}
     // learn-code command
   if(message.content.startsWith(`${prefix}learn-code`)){
     message.channel.send({embed: { 
@@ -239,6 +278,7 @@ client.on('message', (message)=>{
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
     if(message.content.startsWith(`GAMER` || `gamer` || `GAMMMMMERRRRRRRRR` || `Gamer.`)){ // idk why this is not working
+      
       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
     }
     if(message.content.startsWith( `gamer`)){
@@ -248,7 +288,12 @@ client.on('message', (message)=>{
       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
     }
     if(message.content.startsWith( `Gamer`)){
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+      if((message.author.username) != 'MaybeDuck'){
+        message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+      }
+      else{
+        message.channel.send (`${message.author} got 2000 ms (he sent this 2.87 hours ago needs new internet); becuase hes such chip lol 😂 --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+      }
     }
     if(message.content.startsWith( `Gaaaaaaaa`)){
       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
@@ -256,6 +301,26 @@ client.on('message', (message)=>{
     if(message.content.startsWith( `Gaaaaaaaayyyyymmmmmeeeeeerrrrrrrrrz`)){
       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
     }
+    if(message.content.startsWith(`${prefix}dance`)){
+         
+          message.channel.send({embed: { 
+          
+          color: 9437320, description:` they did the hack\n they did the hackclub dance\n --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://hackerdance.philippounds.repl.co/dance.gif`
+          }
+          }});
+    }
+
+    if(message.content.startsWith(`${prefix}chip`)){
+         
+          message.channel.send({embed: { 
+          
+          color: 9437320, description:` cc : This is joe jumping off a chair\n https://joepersonalwebsite.philippounds.repl.co --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+          image:  {
+              url: `https://joepersonalwebsite.philippounds.repl.co/joe.gif`
+          }
+          }});
 
         if(message.content.startsWith(`${prefix}time`)){
           var moment = require('moment'); 
@@ -270,12 +335,14 @@ client.on('message', (message)=>{
     }
 
 
-     if(message.content.startsWith(`${prefix}change-status`)){
-      message.channel.send("Hello you can now change my status on https://mhc-time-bot.philippounds.repl.co --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
-    }
 
-} )
 
+          
+
+
+
+
+}});
 
 // the client id
 client.login("Your_Bot_Token")
