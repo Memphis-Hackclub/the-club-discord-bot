@@ -9,8 +9,8 @@ const schedule = require('node-schedule');
 
 const rule = new schedule.RecurrenceRule();
 rule.tz = 'America/Regina';
-rule.minute =44;
-rule.hour = 19
+rule.minute =02;
+rule.hour = 16
 
 
 
@@ -21,6 +21,9 @@ const fs = require('fs')
 //client.msgs = require('./msgs.json')
 var ftext = fs.readFileSync("./questions.txt", "utf-8");
 var text = ftext.split('\n')
+
+var gtext =  fs.readFileSync("./gamer_list.txt", "utf-8");
+var gamer_list = gtext.split('\n')
 console.log(text)
 prefix = "!"
 
@@ -277,40 +280,12 @@ if(message.content.startsWith(`${prefix}human`)){
   if(message.content.startsWith(`${prefix}elon`)){
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
-    if(message.content.startsWith(`GAMER` || `gamer` || `GAMMMMMERRRRRRRRR` || `Gamer.`)){ // idk why this is not working
-      
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
+  
+    if(gamer_list.includes(message.content.toLowerCase())){
+       
+       message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
     }
-    if(message.content.startsWith( `gamer`)){
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-    }
-     if(message.content.startsWith( `GAMMMMMERRRRRRRRR`)){
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-    }
-    if(message.content.startsWith( `Gamer`)){
-      if((message.author.username) != 'MaybeDuck'){
-        message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-      }
-      else{
-        message.channel.send (`${message.author} got 2000 ms (he sent this 2.87 hours ago needs new internet); becuase hes such chip lol 😂 --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-      }
-    }
-    if(message.content.startsWith( `Gaaaaaaaa`)){
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-    }
-    if(message.content.startsWith( `Gaaaaaaaayyyyymmmmmeeeeeerrrrrrrrrz`)){
-      message.channel.send (`${message.author} A true gamer indeed with a ping of ${client.ws.ping} ms; with such untamed skill now time to be a HACKKKER!!! --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`);
-    }
-    if(message.content.startsWith(`${prefix}dance`)){
-         
-          message.channel.send({embed: { 
-          
-          color: 9437320, description:` they did the hack\n they did the hackclub dance\n --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
-          image:  {
-              url: `https://hackerdance.philippounds.repl.co/dance.gif`
-          }
-          }});
-    }
+   
 
     if(message.content.startsWith(`${prefix}chip`)){
          
@@ -321,6 +296,8 @@ if(message.content.startsWith(`${prefix}human`)){
               url: `https://joepersonalwebsite.philippounds.repl.co/joe.gif`
           }
           }});
+    }
+          
 
         if(message.content.startsWith(`${prefix}time`)){
           var moment = require('moment'); 
@@ -334,14 +311,35 @@ if(message.content.startsWith(`${prefix}human`)){
       
     }
 
+ if(message.content.startsWith(`${prefix}bruh`)){
+      message.channel.send({embed:{
+        color: 9437320, description:` bruhh --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+        image:  {
+              url: `https://bruh.blakefreeman007.repl.co/blake_bruh.jpg`
+          }
+
+      }});
+
+    }
+  if(message.content.startsWith(`${prefix}dance`)){
+      message.channel.send({embed:{
+        color: 9437320, description:` they did the hack
+      they did the hackclub dance
+          --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
+        image:  {
+              url: `https://hackerdance.philippounds.repl.co/dance.gif`
+          }
+
+      }});
+
+    }
 
 
 
-          
 
+});
 
-
-
+// the client id
 }});
 
 // the client id
