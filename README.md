@@ -1,7 +1,7 @@
 # The Club - Discord Bot
 Build In | Contributors | Live version
 --- | --- | ---
-**Node.js/Discord API** | [@philip-hub](https://github.com/philip-hub) | Clone and run with continous server
+**Node.js/Discord API** | [@philip-hub](https://github.com/philip-hub) [@MaybeDuck](https://github.com/MaybeDuck)  | Clone and run with continous server
 
 ![Robot](https://i.giphy.com/media/6VMn2qsqlSzJ0GZ5K9/giphy.webp)
 
