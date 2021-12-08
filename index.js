@@ -1,3 +1,5 @@
+messgaeCount = 0;
+
 var express = require('express')
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -147,6 +149,9 @@ const nextTimeInfo = require('./next-meeting');
 
 //next-meeting command and logic that dictates the gif, message, and colors used
 client.on('message', (message)=>{
+  
+  messgaeCount = messgaeCount + 1;
+  console.log(messgaeCount)
   // if(message.content.startsWith(`${prefix}next-meeting`)){
      
   //     //sends the messaged with the varibles defined with the logic above
