@@ -285,7 +285,7 @@ if(message.content.startsWith(`${prefix}human`)){
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
     if(message.content.startsWith(`${prefix}roles`)){
-      message.channel.send("We always aim to be inclusive, so here are the Discord roles and how you can get them: https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+      message.channel.send("We always aim to be inclusive, so here are the Discord roles and how you can get them: https://docs.google.com/document/d/1IIehPHa3HdHlPiE0cmz38RPK2OBxBpfEttR94nT3Bks/edit?usp=sharing --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
   
     if(gamer_list.includes(message.content.toLowerCase())){
