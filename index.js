@@ -227,7 +227,7 @@ client.on('message', (message)=>{
 if(message.content.startsWith(`${prefix}human`)){
       message.channel.send('"say somthing that complements Human #1"--- some random guy 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀');}    
     if(message.content.startsWith(`${prefix}coc`)){
-      message.channel.send("Our Code of Conduct https://memphis-hackclub.github.io/the-new-website/howtojoin.html --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");}
+      message.channel.send("Our Code of Conduct https://hackclub.com/conduct/ --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");}
     // learn-code command
   if(message.content.startsWith(`${prefix}learn-code`)){
     message.channel.send({embed: { 
