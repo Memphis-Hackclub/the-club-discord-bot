@@ -1,5 +1,4 @@
-messgaeCount = 0;
-
+messgaeCount = 95437
 var express = require('express')
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -103,6 +102,7 @@ client.on('guildMemberAdd', guildMember => {
 
 client.once("ready", () =>{
   console.log("your bot is ready!")
+  
 
     const job = schedule.scheduleJob(rule, function(){
       console.log("chips")
@@ -133,9 +133,9 @@ client.once("ready", () =>{
 const nextTimeInfo = require('./next-meeting');
 
 
-// botMessage = nextTimeInfo.botMessage;
-// gifs =  nextTimeInfo.gif;
-// color =  nextTimeInfo.color;
+botMessage = nextTimeInfo.botMessage;
+gifs =  nextTimeInfo.gif;
+color =  nextTimeInfo.color;
 // currentDay =  nextTimeInfo.currentDay;
 
 // console.log(botMessage);
@@ -149,30 +149,29 @@ const nextTimeInfo = require('./next-meeting');
 
 //next-meeting command and logic that dictates the gif, message, and colors used
 client.on('message', (message)=>{
+
   
+  if(message.content.startsWith(`${prefix}next-meeting`)){
+    
+  
+
+
+      //sends the messaged with the varibles defined with the logic above
+      message.channel.send({embed: { 
+      color: 65497, description:botMessage, 
+      image:  {
+          url: gifs
+      }
+      }});
+  }
+   
   messgaeCount = messgaeCount + 1;
   console.log(messgaeCount)
-  // if(message.content.startsWith(`${prefix}next-meeting`)){
-     
-  //     //sends the messaged with the varibles defined with the logic above
-  //     message.channel.send({embed: { 
-  //     color: color, description:`${botMessage} --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
-  //     image:  {
-  //         url: `${gifs}`
-  //     }
-  //     }});
-  //     console.log(currentDay)
-  //     if (currentDay == 5){
-  //       message.channel.send("http://zoom.memphishack.com")
-        
-  //     }
-  //   }
-
     //the help command logic
     if(message.content.startsWith(`${prefix}help`)){
       message.channel.send({embed: { 
       color:1118018 , description:`A list of commands to try \n \n !next-meeting When the next meeting is \n !about For new Hackclubers to learn about the club
-       \n !learn-code An intro to learning code \n !socials Follow our socials \n !coc See our code of conduct \n !global-events Fun Global Hackclub Events \n !hack Find hackothons happening that you can join! \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`,
+       \n !learn-code An intro to learning code \n !socials Follow our socials \n !coc See our code of conduct \n !roles Learn about the Discord roles and how to get them!\n !global-events Fun Global Hackclub Events \n !hack Find hackothons happening that you can join! \n !slack Learn about Global Hackclub's Slack \n !help This command to display the doc for the command \n !fix To go create an issue or pr for the bot on Github \n  --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`,
       image: {
         url: "https://media.giphy.com/media/l0HlTPnnfzRsf4f2U/giphy.gif"
       }
@@ -273,7 +272,7 @@ if(message.content.startsWith(`${prefix}human`)){
       message.channel.send("https://www.youtube.com/watch?v=52Xwkg01mCI&t=13s --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
 
-  if(message.content.startsWith(`${prefix}RBV`)){
+  if(message.content.startsWith(`${prefix}RV`)){
       message.channel.send("iA? John may pay you $10 to figure this out . . . --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
   if(message.content.startsWith(`${prefix}GCN`)){
@@ -284,6 +283,9 @@ if(message.content.startsWith(`${prefix}human`)){
     }
   if(message.content.startsWith(`${prefix}elon`)){
       message.channel.send("https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
+    }
+    if(message.content.startsWith(`${prefix}roles`)){
+      message.channel.send("We always aim to be inclusive, so here are the Discord roles and how you can get them: https://www.youtube.com/watch?v=riru9OzScwk --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
     }
   
     if(gamer_list.includes(message.content.toLowerCase())){
@@ -326,6 +328,9 @@ if(message.content.startsWith(`${prefix}human`)){
       }});
 
     }
+
+
+
   if(message.content.startsWith(`${prefix}dance`)){
       message.channel.send({embed:{
         color: 9437320, description:` they did the hack
@@ -342,10 +347,9 @@ if(message.content.startsWith(`${prefix}human`)){
 
 
 
-});
 
-// the client id
-}});
+
+});
 
 // the client id
 client.login("Your_Bot_Token")
