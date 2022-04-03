@@ -178,7 +178,15 @@ client.on('message', (message)=>{
       }});
     }
     // the about command
-    if(message.content.startsWith(`${prefix}about`)){
+   if(message.content.startsWith(`${prefix}rileypog`)){
+      message.channel.send({embed: { 
+      color:1118018 , description:`YAS  QUEEN --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`,
+      image: {
+        url: "https://emotionalseagreentag.blakefreeman007.repl.co/riley.png"
+      }
+      }});
+    }
+  if(message.content.startsWith(`${prefix}about`)){
           message.channel.send({embed: { 
           color: 65497, description:`Welcome to world of hacking! Whether you hold mutiple years of experience hacking, have never coded in your life, or you are somewhere in between, Memphis Hackclub is for you we do not care where you go to school this is a club open to ALL students!!! AND We are really EXCITED you are here!!! \n Use !coc to learn about our code of conduct and !help to learn about this bot --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀`, 
           image:  {
@@ -187,6 +195,7 @@ client.on('message', (message)=>{
           }});
       message.channel.send("Our Website http://memphishack.com !socials")
     }
+          
 
     if(message.content.startsWith(`${prefix}change-status`)){
       message.channel.send("Hello you can now change my status on https://mhc-time-bot.philippounds.repl.co --- The Club 👩🏾‍💻🧑🏽‍💻👨🏾‍💻👩🏼‍💻🧑🏻‍💻👩🏿‍💻🚀");
@@ -350,6 +359,7 @@ if(message.content.startsWith(`${prefix}human`)){
 
 
 });
+
 
 // the client id
 client.login("Your_Bot_Token")
